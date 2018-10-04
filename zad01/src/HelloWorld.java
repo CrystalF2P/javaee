@@ -1,4 +1,4 @@
-package javaee.zad01.src
+package javaee.zad01.src;
 
 public class HelloWorld{
 
