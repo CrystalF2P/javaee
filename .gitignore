@@ -9,3 +9,11 @@ bin/
 .settings
 .classpath
 .iml
+
+
+#SKOMPRESOWANE
+
+.tar
+.gz
+.zip
+.rar
