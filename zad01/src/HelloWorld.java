@@ -1,4 +1,4 @@
-Package pierwsze;
+
 
 public class HelloWorld{
 
