@@ -1,0 +1,11 @@
+#JAVA
+
+bin/
+
+.class
+.jar
+.war
+.log
+.settings
+.classpath
+.iml
