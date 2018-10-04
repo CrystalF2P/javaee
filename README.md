@@ -1,2 +1,1 @@
-# javaee
-Technologie Java Enterprise
+Michał Krause
