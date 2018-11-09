@@ -49,7 +49,10 @@ public class Operations extends HttpServlet{
 		selectedWaga += waga + " ";
 	}
 	
-	java.util.Date data1 = null;
+	SimpleDateFormat sqldata = new SimpleDateFormat(selectedDate);
+	
+	
+	/*java.util.Date data1 = null;
 	try {
 		data1 = new SimpleDateFormat("dd/MM/YYYY").parse(selectedDate);
 	} catch (ParseException e) {
@@ -57,7 +60,7 @@ public class Operations extends HttpServlet{
 		e.printStackTrace();
 	}
 	
-	Date sqldata = new java.sql.Date(data1.getTime());
+	Date sqldata = new java.sql.Date(data1.getTime());*/
 	
 	double waga1 = Double.parseDouble(selectedWaga);
 	

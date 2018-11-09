@@ -42,6 +42,7 @@ public class Sklep extends HttpServlet{
 				"Gatunek: <input type='text' name='gat'><br>" +
 				"Data Zlowienia: <input type='text' name='data'><br>" +
 				"Waga: <input type='text' name='waga'><br>" +
+				"<input type='submit' value='Dodaj' />" +
 				"</form></body></html>");
 
 }
