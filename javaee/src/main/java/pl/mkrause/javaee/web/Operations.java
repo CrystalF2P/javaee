@@ -2,6 +2,7 @@ package pl.mkrause.javaee.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
 
@@ -32,27 +33,35 @@ public class Operations extends HttpServlet{
 	//Integer idryby = new Integer(0);
 	
 	
-	final String selectedGatunek = "";
+	String selectedGatunek = "";
 	for (String gat : request.getParameterValues("gat")) {
 		selectedGatunek += gat + " ";
 	}
 		
-	final String selectedDate = "";
+	String selectedDate = "";
 	for (String date : request.getParameterValues("data")) {
 		selectedDate += date + " ";
 	}
 	
 	
-	final String selectedWaga = "";
+	String selectedWaga = "";
 	for(String waga: request.getParameterValues("waga")) {
 		selectedWaga += waga + " ";
 	}
 	
-	Date data1 = new SimpleDateFormat("dd/MM/yyyy").parse(selectedDate);
+	java.util.Date data1 = null;
+	try {
+		data1 = new SimpleDateFormat("dd/MM/YYYY").parse(selectedDate);
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	Date sqldata = new java.sql.Date(data1.getTime());
 	
 	double waga1 = Double.parseDouble(selectedWaga);
 	
-	Fish fish = new Fish(selectedGatunek, data1, waga1);
+	Fish fish = new Fish(selectedGatunek, sqldata, waga1);
 	
 	
 	Storage store = new Storage();
