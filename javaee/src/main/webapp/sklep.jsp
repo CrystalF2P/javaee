@@ -17,11 +17,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Sklep</title>
 </head>
 <body>
-	<h1>Witaj w naszym sklepie rybnym!</h1>
+	<jsp:useBean id="guestsession" class="pl.mkrause.javaee.domain.Guest" scope="session"/>
+	<h1>Witaj w naszym sklepie rybnym ${guestsession.name} ${guestsession.surname}!</h1>
 	<p>Lista ryb:</p>
 	
 	<%
