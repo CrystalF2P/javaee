@@ -1,13 +1,12 @@
 package pl.mkrause.javaee.domain;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Fish {
 	
-	private long id;
+	private int id;
 	private String gatunek;
-	private SimpleDateFormat dataZlowienia = null;
+	private Date dataZlowienia;
 	private double waga;
 
 	public Fish() {
@@ -15,7 +14,7 @@ public class Fish {
 	}
 
 	
-	public Fish(String gatunek, SimpleDateFormat dataZlowienia, double waga) {
+	public Fish(String gatunek, Date dataZlowienia, double waga) {
 		super();
 		this.gatunek = gatunek;
 		this.dataZlowienia = dataZlowienia;
@@ -24,10 +23,10 @@ public class Fish {
 	
 	
 	
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
@@ -40,10 +39,10 @@ public class Fish {
 	}
 	
 	
-	public SimpleDateFormat getDataZlowienia() {
+	public Date getDataZlowienia() {
 		return dataZlowienia;
 	}
-	public void setDataZlowienia(SimpleDateFormat dataZlowienia) {
+	public void setDataZlowienia(Date dataZlowienia) {
 		this.dataZlowienia = dataZlowienia;
 	}
 	
