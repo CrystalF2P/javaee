@@ -1,7 +1,7 @@
 <%@ page import="pl.mkrause.javaee.domain.Form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="fishService" class="pl.mkrause.javaee.service.FormService" scope="application" />
+<jsp:useBean id="formService" class="pl.mkrause.javaee.service.FormService" scope="application" />
 <jsp:useBean id="db" class="pl.mkrause.javaee.service.SurveyService" scope="session" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,8 +12,8 @@
 <body>
 
 <% 
-	db.add(fishService.getForm(Integer.valueOf(request.getParameter("id"))));
-	fishService.removeForm(Integer.valueOf(request.getParameter("id")));
+	db.add(formService.getForm(Integer.valueOf(request.getParameter("id"))));
+	formService.removeForm(Integer.valueOf(request.getParameter("id")));
 %>
 
 <p>Twoja ankieta została dodana: </p>

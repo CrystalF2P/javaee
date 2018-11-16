@@ -27,9 +27,9 @@ public class Survey extends HttpServlet{
 		HttpSession session = request.getSession();
 		
         if(request.getParameter("survey")==null) {
-            response.sendRedirect("survey.jsp");
+            response.sendRedirect("err.jsp");
         } else {
-            response.sendRedirect("survey.jsp");
+            response.sendRedirect("err.jsp");
         }
     }
 	
@@ -38,10 +38,10 @@ public class Survey extends HttpServlet{
 	        PrintWriter out = response.getWriter();
 
 	        if(request.getParameter("survey")==null) {
-	            response.sendRedirect("survey.jsp");
+	            response.sendRedirect("err.jsp");
 	        } else {
 	            request.getSession().setAttribute("rodo",true);
-	            response.sendRedirect("survey.jsp");
+	            response.sendRedirect("err.jsp");
 	        }
 	        
 	    	HttpSession session = request.getSession();
