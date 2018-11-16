@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import pl.mkrause.javaee.domain.Fish;
+import pl.mkrause.javaee.domain.Form;
 
-public class Storage {
+public class SurveyService {
 	
-	private List<Fish> db = new ArrayList<>();
+	private List<Form> db = new ArrayList<>();
 	
-	public void add(Fish fish){
-		db.add(fish);
+	public void add(Form form){
+		db.add(form);
 	}
 	
-	public void removeFish(Fish fish) {
-        db.remove(fish);
+	public void removeForm(Form form) {
+        db.remove(form);
     }
 	
-	public List<Fish> getAllFish(){
+	public List<Form> getAllForms(){
 		return db;
 	}
 

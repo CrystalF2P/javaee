@@ -4,9 +4,9 @@
 
 <%
     if(session.getAttribute("survey")==null) {
-        response.sendRedirect("survey.jsp");
+        response.sendRedirect("err.jsp");
     } else {
-        response.sendRedirect("survey.jsp");
+        response.sendRedirect("err.jsp");
     }%>
     </body>
 </html>
