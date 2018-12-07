@@ -3,3 +3,21 @@ Nazwy metod piszemy camelCase
 
 zawsze jest jakis pakiet
 nazwy pakietow malymi literami
+
+
+Git w konsoli:
+
+Pobieranie: 
+- wejdź na stronę githuba
+- Clone or Download
+- skopiuj link
+- w konsoli: git clone link
+
+
+Wrzucanie:
+
+- cd Folder
+- git status
+- git add .   <- dodaje wszystko
+- git commit -m "wiadomosc"  <- wiadomość obowiązkowa
+- git push
