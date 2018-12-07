@@ -42,6 +42,35 @@ public class Fish {
 		this.waga = waga;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((gatunek == null) ? 0 : gatunek.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(waga);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Fish other = (Fish) obj;
+		if (gatunek == null) {
+			if (other.gatunek != null)
+				return false;
+		} else if (!gatunek.equals(other.gatunek))
+			return false;
+		if (waga != other.waga)
+			return false;
+		return true;
+	}
 	
 	
 	

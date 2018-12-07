@@ -22,7 +22,7 @@ public class FishManager {
  	}
 	
 	public Fish getFish(Integer id) {
-		return new Fish("Bolek", 1976);
+		return new Fish("Sum", 13);
 	}
 	
 	public List<Fish> getAllFish(){

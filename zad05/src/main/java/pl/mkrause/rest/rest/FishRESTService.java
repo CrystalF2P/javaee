@@ -22,26 +22,27 @@ import pl.mkrause.rest.service.FishManager;
 public class FishRESTService {
 
 	@Inject
-	private FishManager pm;
+	private FishManager fm;
 
 	@GET
 	@Path("/{fishId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Fish getFish(@PathParam("fishId") Integer id) {
-		Fish f = pm.getFish(id);
+		Fish f = fm.getFish(id);
 		return f;
 	}
 
 	@GET
+	@Path("/{fishList}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Fish> getPluralfish() {
-		return pm.getAllFish();
+		return fm.getAllFish();
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addFish(Fish fish) {
-		pm.addFish(fish);
+		fm.addFish(fish);
 
 		return Response.status(201).entity("Fish").build();
 	}
@@ -50,12 +51,12 @@ public class FishRESTService {
 	@Path("/test")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String test() {
-		return "REST API /fish is running today!";
+		return "REST API /fish is working smoothly";
 	}
 
 	@DELETE
 	public Response clearFish() {
-		pm.deleteAllFish();
+		fm.deleteAllFish();
 		return Response.status(200).build();
 	}
 

@@ -1,10 +1,7 @@
 #JAVA
 
+/target/
 bin/
-target/
-.settings/
-
-target
 
 .class
 .jar
