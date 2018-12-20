@@ -47,11 +47,14 @@ public class Zegary extends HttpServlet{
 				"<input type=\"radio\" name=\"cyfry\" value=\"rzymskie\">Rzymskie<br>" + 
 				"<input type=\"radio\" name=\"cyfry\" value=\"dladzieci\">Dla dzieci (bajkowe)<br>" + 
 				"<br>" + 
+				"Przedzial cenowy (budzet, z przecinkiem):" +
+				"<br>" +
+				"<input type=\"text\" name=\"cena\">" +
 				"Kolor zegara:" + 
 				"<br>" + 
-				"<input type=\"checkbox\" name=\"nieswieza\" value=\"nieswieza\"> Ryba byla nieswieza<br>" + 
-				"<input type=\"checkbox\" name=\"niesmaczna\" value=\"niesmaczna\"> Ryba byla niesmaczna<br>" + 
-				"<input type=\"checkbox\" name=\"cena\" value=\"cena\"> Ryba jest zbyt droga" + 
+				"<input type=\"checkbox\" name=\"czerwony\" value=\"czerwony\"> Czerwony<br>" + 
+				"<input type=\"checkbox\" name=\"niebieski\" value=\"niebieski\"> Niebieski<br>" + 
+				"<input type=\"checkbox\" name=\"bialy\" value=\"bialy\"> Bialy" + 
 				"<br>" + 
 				"<input type=\"submit\" value=\"Submit\">" + 
 				"</form>" + 
@@ -72,60 +75,58 @@ public class Zegary extends HttpServlet{
 			response.setContentType("text/html");
 			HttpSession session = request.getSession();
 			
-			SurveyService ss = (SurveyService) session.getAttribute("survey");
+			ClockService cs = (ClockService) session.getAttribute("shop");
 			
-			session.setAttribute("survey", new SurveyService());
+			session.setAttribute("shop", new ClockService());
 			
 			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			
 			Date dateBought;
-			Date dateEaten;
 			
 			dateBought = sdf.parse(request.getParameter("datakupienia"));
-			dateEaten = sdf.parse(request.getParameter("datazjedzenia"));
 			
 			long msBought = dateBought.getTime();
-			long msEaten = dateEaten.getTime();
 			
 			Date parsedDateBought = new Date(msBought);	
-			Date parsedDateEaten = new Date(msEaten);
 			
-			boolean nsw = false;
-			boolean nsm = false;
-			boolean cen = false;
+			boolean cze = false;
+			boolean nie = false;
+			boolean bia = false;
 			
-			if(request.getParameter("nieswieza") != null && request.getParameter("nieswieza").equals("nieswieza")) {
-				nsw = true;
+			if(request.getParameter("czerwoy") != null && request.getParameter("czerwony").equals("czerwony")) {
+				cze = true;
 			}
 			else {
-				nsw = false;
+				cze = false;
 			}
 			
-			if(request.getParameter("niesmaczna") != null && request.getParameter("niesmaczna").equals("niesmaczna")) {
-				nsm = true;
-			}
-			else {
-				nsm = false;
-			}
-			
-			
-			if(request.getParameter("cena") != null && request.getParameter("cena").equals("cena")) {
-				cen = true;
+			if(request.getParameter("niebieski") != null && request.getParameter("niebieski").equals("niebieski")) {
+				nie = true;
 			}
 			else {
-				cen = false;
+				nie = false;
+			}
+			
+			
+			if(request.getParameter("bialy") != null && request.getParameter("bialy").equals("bialy")) {
+				bia = true;
+			}
+			else {
+				bia = false;
 			}
 		
 			
+			double cyfrydouble = Double.parseDouble(request.getParameter("cena").replaceAll(",", "."));
 			
-		ss.addSurvey(new Survey (parsedDateBought, parsedDateEaten, request.getParameter("czestosc"), nsw, nsm, cen));
+			
+		cs.addClock(new Clock (parsedDateBought, request.getParameter("cyfry"), cyfrydouble, cze, nie, bia));
+	
+		session.setAttribute("survey", cs);
 		
-		session.setAttribute("survey", ss);
 		
-		
-		printer.println("<br><br><br><a href=\"http://localhost:8080/fishshop/survey\">Dodaj kolejna ankiete</a><br>" +
-						"<a href=\"http://localhost:8080/fishshop/view\">Wyswietl wszystkie ankiety</a><br>");
+		printer.println("<br><br><br><a href=\"http://localhost:8080/clockshop/shop\">Zamow kolejny zegar</a><br>" +
+						"<a href=\"http://localhost:8080/clockshop/viewclocks\">Wyswietl wszystkie zamowienia</a><br>");
 		
 	} catch (ParseException e) {
 		

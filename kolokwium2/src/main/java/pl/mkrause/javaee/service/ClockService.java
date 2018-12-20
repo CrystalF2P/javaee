@@ -13,14 +13,14 @@ public class ClockService {
 	public int temp=0;
 	private List<Clock> list = new ArrayList<Clock>();
 	
-    public void addSurvey(Clock clock) {
+    public void addClock(Clock clock) {
         clock.setId(licznik);
         list.add(clock);
         licznik++;
     }
 
     
-    public void removeSurvey(int i) {
+    public void removeClock(int i) {
     	
     	for(Iterator<Clock> iterator = list.listIterator(); iterator.hasNext(); ) {
     		Clock c = iterator.next();
