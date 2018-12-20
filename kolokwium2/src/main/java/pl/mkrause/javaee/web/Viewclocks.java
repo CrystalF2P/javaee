@@ -19,41 +19,40 @@ public class Viewclocks extends HttpServlet{
 		
 		
 		int k=0;
-		response.setContentType("text/html");
+		response.setContentType("text/html; charset=utf-8");
 		HttpSession session = request.getSession();
-		if (session.getAttribute("survey") == null)
-			session.setAttribute("survey", new SurveyService());
+		if (session.getAttribute("shop") == null)
+			session.setAttribute("shop", new ClockService());
 		
-		SurveyService ss = (SurveyService) session.getAttribute("survey");
+		ClockService cs = (ClockService) session.getAttribute("shop");
 		
 		PrintWriter printer = response.getWriter();
 		
 
-		printer.print("<html><head><meta charset=\"UTF-8\"></head><h1> Panstwa ankiety: </h1>");
+		printer.print("<html><head><meta charset=\"UTF-8\"></head><h1> Zamowienia: </h1>");
 		
-		while(ss.getList().size()>k) {
-			printer.print("Data Kupienia: " + ss.getList().get(k).getDataKupienia() +
-					"<br>Data Zjedzenia: " + ss.getList().get(k).getDataZjedzenia() +
-					"<br>Czestotliwosc kupowania w naszym sklepie: " + ss.getList().get(k).getCzestosc() +
-					"<br>Uwagi:" );
+		while(cs.getList().size()>k) {
+			printer.print("Data dostawy: " + cs.getList().get(k).getDataKupienia() +
+					"<br>Budzet: " + cs.getList().get(k).getCena() + 
+					"<br>Rodzaj cyfr: " + cs.getList().get(k).getCyfry() +
+					"<br>Kolory:" );
 			
 
-			if(ss.getList().get(k).getNieswieza() == true) {
-				printer.print("<br>Ryba jest nieswieza");
+			if(cs.getList().get(k).getCzerwony() == true) {
+				printer.print("<br>Czerwony");
 			}
 	
-			if(ss.getList().get(k).getNiesmaczna() == true) {
-				printer.print("<br>Ryba jest niesmaczna");
+			if(cs.getList().get(k).getNiebieski() == true) {
+				printer.print("<br>Niebieski");
 			}			
 			
-			
-			if(ss.getList().get(k).getCena() == true) {
-				printer.print("<br>Ryba jest zbyt droga");
+			if(cs.getList().get(k).getBialy() == true) {
+				printer.print("<br>Bialy");
 			}			
 			
-			printer.println("<br><form action=\"view\" method=\"post\">" +
-			"<input type=\"radio\" name=\"delete\" value=\"delete\"> Usun ankiete<br>" +
-			"<input type=\"hidden\" name=\"surveyid\" value=\""+ ss.getList().get(k).getId() +"\"><br>" +
+			printer.println("<br><form action=\"viewclocks\" method=\"post\">" +
+			"<input type=\"radio\" name=\"delete\" value=\"delete\"> Usun zamowienie<br>" +
+			"<input type=\"hidden\" name=\"clockid\" value=\""+ cs.getList().get(k).getId() +"\"><br>" +
 			"<input type=\"submit\" name=\"submit\" value=\"Submit\"></form>");
 			
 			
@@ -63,7 +62,7 @@ public class Viewclocks extends HttpServlet{
 					
 		}
 		
-		printer.println("<br><br><br><a href=\"http://localhost:8080/fishshop/survey\">Dodaj kolejna ankiete</a><br>");
+		printer.println("<br><br><br><a href=\"http://localhost:8080/clockshop/shop\">Dodaj kolejne zamowienie</a><br>");
 	}	
 	
 	
@@ -76,18 +75,18 @@ public class Viewclocks extends HttpServlet{
 		response.setContentType("text/html");
 		HttpSession session = request.getSession();
 		
-		SurveyService ss = (SurveyService) session.getAttribute("survey");
+		ClockService cs = (ClockService) session.getAttribute("shop");
 		
-		session.setAttribute("survey", new SurveyService());	
+		session.setAttribute("shop", new ClockService());	
 		
-		int num = Integer.parseInt(request.getParameter("surveyid"));
+		int num = Integer.parseInt(request.getParameter("clockid"));
 		
-		ss.removeSurvey(num);
+		cs.removeClock(num);
 		
-		session.setAttribute("survey", ss);
+		session.setAttribute("shop", cs);
 		
-		printer.println("<br><br><br><a href=\"http://localhost:8080/fishshop/survey\">Dodaj kolejna ankiete</a><br>" +
-				"<a href=\"http://localhost:8080/fishshop/view\">Wyswietl wszystkie ankiety</a><br>");
+		printer.println("<br><br><br><a href=\"http://localhost:8080/clockshop/shop\">Dodaj kolejne zamowienie</a><br>" +
+				"<a href=\"http://localhost:8080/clockshop/viewclocks\">Wyswietl wszystkie zamowienia</a><br>");
 		
 	}
 }

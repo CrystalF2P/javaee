@@ -48,7 +48,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>fishshop</finalName>
+		<finalName>clockshop</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

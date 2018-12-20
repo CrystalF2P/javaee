@@ -36,7 +36,7 @@ public class Zegary extends HttpServlet{
 		
 		
 		printer.println("<!DOCTYPE html><html><head><meta charset=\"utf-8\"></head><body><h2>Sklep:</h2>" +
-				"<form action=\"survey\" method=\"post\">" +
+				"<form action=\"shop\" method=\"post\">" +
 				"Na kiedy dostawa:" + 
 				"<br>" + 
 				"<input type=\"date\" id=\"datakupienia\" name=\"datakupienia\" required=\"required\">" + 
@@ -50,7 +50,7 @@ public class Zegary extends HttpServlet{
 				"Przedzial cenowy (budzet, z przecinkiem):" +
 				"<br>" +
 				"<input type=\"text\" name=\"cena\">" +
-				"Kolor zegara:" + 
+				"<br><br>Kolor zegara:" + 
 				"<br>" + 
 				"<input type=\"checkbox\" name=\"czerwony\" value=\"czerwony\"> Czerwony<br>" + 
 				"<input type=\"checkbox\" name=\"niebieski\" value=\"niebieski\"> Niebieski<br>" + 
@@ -122,7 +122,7 @@ public class Zegary extends HttpServlet{
 			
 		cs.addClock(new Clock (parsedDateBought, request.getParameter("cyfry"), cyfrydouble, cze, nie, bia));
 	
-		session.setAttribute("survey", cs);
+		session.setAttribute("shop", cs);
 		
 		
 		printer.println("<br><br><br><a href=\"http://localhost:8080/clockshop/shop\">Zamow kolejny zegar</a><br>" +
