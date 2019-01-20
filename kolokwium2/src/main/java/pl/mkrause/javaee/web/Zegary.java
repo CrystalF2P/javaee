@@ -28,8 +28,11 @@ public class Zegary extends HttpServlet{
 		
 		if (session.getAttribute("shop") == null)
 			session.setAttribute("shop", new ClockService());
+		if (getServletContext().getAttribute("clock") == null)
+			getServletContext().setAttribute("clock", new ClockService());
 		
 		ClockService cs = (ClockService) session.getAttribute("shop");
+		ClockService as = (ClockService) getServletContext().getAttribute("clock");
 		
 		PrintWriter printer = response.getWriter();
 		
@@ -56,7 +59,7 @@ public class Zegary extends HttpServlet{
 				"<input type=\"checkbox\" name=\"niebieski\" value=\"niebieski\"> Niebieski<br>" + 
 				"<input type=\"checkbox\" name=\"bialy\" value=\"bialy\"> Bialy" + 
 				"<br>" + 
-				"<input type=\"submit\" value=\"Submit\">" + 
+				"<input type=\"submit\" value=\"Dodaj do Koszyka\">" + 
 				"</form>" + 
 				"</body>" + 
 				"</html>");
@@ -77,6 +80,7 @@ public class Zegary extends HttpServlet{
 			
 			ClockService cs = (ClockService) session.getAttribute("shop");
 			
+			
 			session.setAttribute("shop", new ClockService());
 			
 			
@@ -94,7 +98,7 @@ public class Zegary extends HttpServlet{
 			boolean nie = false;
 			boolean bia = false;
 			
-			if(request.getParameter("czerwoy") != null && request.getParameter("czerwony").equals("czerwony")) {
+			if(request.getParameter("czerwony") != null && request.getParameter("czerwony").equals("czerwony")) {
 				cze = true;
 			}
 			else {
@@ -125,8 +129,8 @@ public class Zegary extends HttpServlet{
 		session.setAttribute("shop", cs);
 		
 		
-		printer.println("<br><br><br><a href=\"http://localhost:8080/clockshop/shop\">Zamow kolejny zegar</a><br>" +
-						"<a href=\"http://localhost:8080/clockshop/viewclocks\">Wyswietl wszystkie zamowienia</a><br>");
+		printer.println("<br><br><br><a href=\"/clockshop/shop\">Zamow kolejny zegar</a><br>" +
+						"<a href=\"/clockshop/viewclocks\">Wyswietl koszyk</a><br>");
 		
 	} catch (ParseException e) {
 		

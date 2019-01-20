@@ -22,6 +22,7 @@ public class Clock {
 		this.czerwony = czerwony;
 		this.niebieski = niebieski;
 		this.bialy = bialy;
+		id++;
 	}
 	
 	
